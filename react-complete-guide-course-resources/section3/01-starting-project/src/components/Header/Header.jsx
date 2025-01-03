@@ -1,4 +1,5 @@
-import reactImg from '../assets/react-core-concepts.png';
+import reactImg from '../../assets/react-core-concepts.png';
+import './Header.css';
 
 const reactDescriptions = ['Fundamental', 'Core Concepts', 'Advanced Guide', 'Hooks', 'Redux', 'Testing', 'Next Steps'];
 
@@ -13,7 +14,8 @@ export default function Header() {
         <img src={reactImg} alt="Stylized atom" />
         <h1>React Essentials</h1>
         <p>
-          {randomIndex} Blah foobar Blah foobar
+          {randomIndex} Yo asdajskldjklas
+           Blah foobar
           to build!
         </p>
       </header>

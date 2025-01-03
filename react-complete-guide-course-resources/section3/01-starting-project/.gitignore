@@ -3,7 +3,7 @@ node_modules
 dist
 dist-ssr
 *.local# dependencies
-node_modules/
+node_modules
 
 # build output
 build/
@@ -44,4 +44,4 @@ chrome-user-data
 .vscode
 *.swp
 *.swo
-ultimate-react-course-main.zip
+ultimate-react-course-main.zip!node_modules
