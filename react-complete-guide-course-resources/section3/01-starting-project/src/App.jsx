@@ -9,9 +9,16 @@ import { EXAMPLES } from './data.js';
 function App() {
   const [ selectedTopic, setSelectedTopic ] = useState('');
 
+
   function handleSelect(selectedButton) {
     setSelectedTopic(selectedButton);
     //console.log(setSelectedTopic);
+  }
+
+  const [highlighted, setHighlighted] = useState(false);
+  function handleButtonClick() {
+    setHighlighted(isHighlighted => !isHighlighted);
+    console.log('Button clicked');
   }
 
   console.log('APP Executing');
@@ -37,27 +44,27 @@ function App() {
         <section id="core-concepts">
         <h2>Core Concepts</h2>
         <ul>
-          <CoreConcept {...CORE_CONCEPTS[0]} />
-          <CoreConcept {...CORE_CONCEPTS[1]} />
-          <CoreConcept {...CORE_CONCEPTS[2]} />
-          <CoreConcept 
-            title={CORE_CONCEPTS[3].title}  
-            description={CORE_CONCEPTS[3].description}
-            image={CORE_CONCEPTS[3].image}
-          />
+          {CORE_CONCEPTS.map((conceptItem) => (
+            <CoreConcept key={conceptItem.title} {...conceptItem} />
+          ))};
+
 
         </ul>
         </section>
         <section id="examples">
           <h2> Examples</h2>
           <menu>
-            <TabButton onSelect={() => handleSelect('components')}>
+            <TabButton isSelected={selectedTopic === 'components'} onSelect={() => handleSelect('components')}>
               Components
             </TabButton>
-            <TabButton onSelect={() => handleSelect('jsx')}>JSX</TabButton>
-            <TabButton onSelect={() => handleSelect('props')}>Props</TabButton>
-            <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
+            <TabButton isSelected={selectedTopic === 'jsx'} onSelect={() => handleSelect('jsx')}>JSX</TabButton>
+            <TabButton isSelected={selectedTopic === 'props'} onSelect={() => handleSelect('props')}>Props</TabButton>
+            <TabButton isSelected={selectedTopic === 'state'} onSelect={() => handleSelect('state')}>State</TabButton>
           </menu>
+          <div>
+            <p className={highlighted ? 'activeButtonText' : ''}>Style me!</p>
+            <button onClick={handleButtonClick}>Toggle style</button>
+          </div>
           {tabContent}
         </section>
       </main>
