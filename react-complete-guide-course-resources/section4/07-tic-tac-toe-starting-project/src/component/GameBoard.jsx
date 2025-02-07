@@ -8,22 +8,15 @@ const initialGameBoard = [
 ];
 
 // GameBoard component
-export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
-    // State to manage the current state of the game board
-    const [gameBoard, setGameBoard] = useState(initialGameBoard);
+export default function GameBoard({ onSelectSquare, turns }) {
+    let gameBoard = initialGameBoard;
 
-    // Function to handle the selection of a square
-    function handleSelectSquare(rowIndex, colIndex) {
-        // Update the game board state
-        setGameBoard((prevGameBoard) => {
-            // Create a deep copy of the previous game board state
-            const updatedBoard = [...prevGameBoard.map(innerArray => [...innerArray])];
-            // Set the selected square to the active player's symbol
-            updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
-            return updatedBoard;
-        });
-        // Call the onSelectSquare callback
-        onSelectSquare();
+    for (const turn of turns) {
+        const { square, player } = turn;
+        const { row, col } = square;
+
+        gameBoard[row][col] = player;
+
     }
 
     // Render the game board
@@ -35,7 +28,7 @@ export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
                         {row.map((playerSymbol, colIndex) => (
                             <li key={colIndex}>
                                 {/* Button to select a square */}
-                                <button onClick={() => handleSelectSquare(rowIndex, colIndex)}>
+                                <button onClick={() => onSelectSquare(rowIndex, colIndex)}>
                                     {playerSymbol}
                                 </button>
                             </li>
