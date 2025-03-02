@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-
-
 // GameBoard component
 export default function GameBoard({ onSelectSquare, board }) {
 
